@@ -38,7 +38,6 @@ namespace rainbowMilla
     {
         private static float update = 0f;
         private static double r = 1, g = 0, b = 0, a = 1;
-        private static SpriteRenderer millaRenderer = (SpriteRenderer)GameObject.Find("Player 1").GetComponent(typeof(SpriteRenderer));
 
         [HarmonyPostfix]
         [HarmonyPatch(typeof(FPPlayer), "Update", MethodType.Normal)]
@@ -52,7 +51,6 @@ namespace rainbowMilla
                     r = Math.Round(r, 2);
                     b = Math.Round(b, 2);
                     g = Math.Round(g, 2);
-                    //millaRenderer.color = new Color((float)r, (float)g, (float)b, (float)a);
                     if (__instance.childSprite.childSprite != null)
                     {
                         __instance.childSprite.childSprite.color = new Color((float)r, (float)g, (float)b, (float)a);
@@ -61,7 +59,6 @@ namespace rainbowMilla
                     {
                         __instance.GetComponent<SpriteRenderer>().color = new Color((float)r, (float)g, (float)b, (float)a);
                     }
-                    //FileLog.Log("Values " + r + " " + g + " " + b);
                     if (r <= 1 && b < 1 && g <= 0)
                     {
                         r = r - 0.01;
